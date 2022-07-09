@@ -1,5 +1,5 @@
 import { v4 as uuidV4, validate } from 'uuid';
-import { InvalidUuidError } from '../../errors/invalid.uuid.error'
+import { InvalidUuidError } from '../errors/invalid.uuid.error'
 
 import ValueObject from './value-object';
 

@@ -1,4 +1,3 @@
-import { filter } from 'lodash';
 import Entity from '../../entity/entity';
 import { UniqueEntityId } from '../../value-objects/unique-entity-id.vo';
 import { InMemoryRepository, InMemorySearchableRepository } from '../in-memory.repository';

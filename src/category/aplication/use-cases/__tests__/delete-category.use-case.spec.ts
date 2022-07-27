@@ -1,15 +1,18 @@
-import { Category } from '../../../domain/entities/category';
+import { UniqueEntityId } from '../../../../@seedwork/domain/value-objects/unique-entity-id.vo';
 import { NotFoundError } from '../../../../@seedwork/domain/errors/not-found.error';
+import { Category } from '../../../domain/entities/category';
 import CategoryInMemoryRepository from '../../../infra/repositories/in-memory/category-in-memory.repository';
-import FindCategoryUseCase, { Input } from '../find-category.use-case copy';
+import DeleteCategoryUseCase, { Input } from '../delete-category.use-case';
 
-describe(`${FindCategoryUseCase.name} Unit Tests`, () => {
-  let useCase: FindCategoryUseCase;
+const deleteCategoryUseCaseName = DeleteCategoryUseCase.name;
+
+describe(`${deleteCategoryUseCaseName} Unit Tests`, () => {
+  let useCase: DeleteCategoryUseCase;
   let repository: CategoryInMemoryRepository;
 
   beforeEach(() => {
     repository = new CategoryInMemoryRepository();
-    useCase = new FindCategoryUseCase(repository);
+    useCase = new DeleteCategoryUseCase(repository);
   });
 
   afterEach(() => {
@@ -28,17 +31,21 @@ describe(`${FindCategoryUseCase.name} Unit Tests`, () => {
     ).rejects.toThrow(new NotFoundError('Entity Not Found using ID undefined'));
   });
 
-  it('should return a category when id is provided', async () => {
+
+  it('should delete category when id is provided', async () => {
+    const spyRepoDelete = jest.spyOn(repository, 'delete');
+
+    const uuid = new UniqueEntityId()
     const items = [
-      new Category({name: 'some name 1'}),
+      new Category({name: 'some name 1'}, uuid),
       new Category({name: 'some name 2'}),
     ];
     repository.items = items;
     
-    const output = await useCase.execute({id: items[0].id});
+    const output = await useCase.execute({ id: uuid.toString() });
 
-    expect(output).toStrictEqual({
-      ... items[0].toJson()
-    })
+    expect(repository.items).toHaveLength(1);
+    expect(spyRepoDelete).toBeCalledTimes(1);
+    expect(spyRepoDelete).toBeCalledWith(uuid.toString());
   });
 });

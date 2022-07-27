@@ -111,7 +111,7 @@ type SearchResultProperties<E extends Entity,Filter> = {
   readonly filter: Filter;
 }
 
-export class SearchResult<E extends Entity,Filter> {
+export class SearchResult<E extends Entity = Entity, Filter = string> {
   readonly items: E[];
   readonly total: number;
   readonly currentPage: number;

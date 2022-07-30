@@ -1,8 +1,8 @@
-import { UniqueEntityId } from '@seedwork/domain/value-objects/unique-entity-id.vo';
-import { Category } from '../../../../category/domain/entities/category';
-import { NotFoundError } from '../../../../@seedwork/domain/errors/not-found.error';
-import CategoryInMemoryRepository from '../../../infra/repositories/in-memory/category-in-memory.repository';
+import { Category } from '@category/domain/entities/category';
+import CategoryInMemoryRepository from '@category/infra/repositories/in-memory/category-in-memory.repository';
+import { NotFoundError } from '@core/seedwork/domain/errors/not-found.error';
 import UpdateCategoryUseCase, { Input } from '../update-category.use-case';
+
 
 const updateCategoryUseCaseName = UpdateCategoryUseCase.name;
 

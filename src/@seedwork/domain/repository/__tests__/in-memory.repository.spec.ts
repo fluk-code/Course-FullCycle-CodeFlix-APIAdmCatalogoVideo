@@ -3,6 +3,7 @@ import { UniqueEntityId } from '../../value-objects/unique-entity-id.vo';
 import { InMemoryRepository, InMemorySearchableRepository } from '../in-memory.repository';
 import { SearchParams, SearchResult } from '../repository-contracts';
 
+
 type StubEntityProps = {
   name: string,
   price: number

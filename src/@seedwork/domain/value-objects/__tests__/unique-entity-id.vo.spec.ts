@@ -1,6 +1,7 @@
+import { validate } from 'uuid';
+
 import { InvalidUuidError } from '../../errors/invalid.uuid.error';
 import { UniqueEntityId } from '../unique-entity-id.vo';
-import { validate } from 'uuid';
 
 describe(`${UniqueEntityId} unit test`, () => {
   // function spyValidateMethod() {

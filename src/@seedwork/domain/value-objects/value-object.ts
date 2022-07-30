@@ -1,5 +1,6 @@
 import { deepFreeze } from '../utils/object';
 
+
 export default abstract class ValueObject<Value = any> {
   protected readonly _value: Value;
 

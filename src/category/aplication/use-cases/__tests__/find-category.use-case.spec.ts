@@ -1,7 +1,8 @@
-import { Category } from '../../../domain/entities/category';
-import { NotFoundError } from '../../../../@seedwork/domain/errors/not-found.error';
-import CategoryInMemoryRepository from '../../../infra/repositories/in-memory/category-in-memory.repository';
-import FindCategoryUseCase, { Input } from '../find-category.use-case copy';
+import { Category } from '@category/domain/entities/category';
+import CategoryInMemoryRepository from '@category/infra/repositories/in-memory/category-in-memory.repository';
+import { NotFoundError } from '@core/seedwork/domain/errors/not-found.error';
+import FindCategoryUseCase, { Input } from '../find-category.use-case';
+
 
 describe(`${FindCategoryUseCase.name} Unit Tests`, () => {
   let useCase: FindCategoryUseCase;

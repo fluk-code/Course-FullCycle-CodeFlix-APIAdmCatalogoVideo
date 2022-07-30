@@ -1,7 +1,7 @@
-import { UniqueEntityId } from '../../../../@seedwork/domain/value-objects/unique-entity-id.vo';
-import { NotFoundError } from '../../../../@seedwork/domain/errors/not-found.error';
-import { Category } from '../../../domain/entities/category';
-import CategoryInMemoryRepository from '../../../infra/repositories/in-memory/category-in-memory.repository';
+import { Category } from '@category/domain/entities/category';
+import CategoryInMemoryRepository from '@category/infra/repositories/in-memory/category-in-memory.repository';
+import { NotFoundError } from '@core/seedwork/domain/errors/not-found.error';
+import { UniqueEntityId } from '@core/seedwork/domain/value-objects/unique-entity-id.vo';
 import DeleteCategoryUseCase, { Input } from '../delete-category.use-case';
 
 const deleteCategoryUseCaseName = DeleteCategoryUseCase.name;

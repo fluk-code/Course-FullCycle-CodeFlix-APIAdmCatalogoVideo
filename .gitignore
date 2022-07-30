@@ -1,5 +1,15 @@
+# Project
 node_modules/
-.history/
+dist/
+
 tsconfig.tsbuildinfo
+
+# Tests
+__coverage/
+
+
+# Containers
 .docker/zsh/history/.zsh_history
-__coverage
+
+# Extensions
+.history/

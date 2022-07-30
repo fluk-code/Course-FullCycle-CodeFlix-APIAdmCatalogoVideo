@@ -1,6 +1,6 @@
-import { Category } from '../../../domain/entities/category';
-import CategoryRepository from '../../../domain/repositories/category.repository';
-import CategoryInMemoryRepository from '../../../infra/repositories/in-memory/category-in-memory.repository';
+import { Category } from '@category/domain/entities/category';
+import CategoryRepository from '@category/domain/repositories/category.repository';
+import CategoryInMemoryRepository from '@category/infra/repositories/in-memory/category-in-memory.repository';
 import FindAllCategoriesUseCase from '../find-all-ccategories.use-case';
 
 const findAllCategoriesUseCaseName = FindAllCategoriesUseCase.name;

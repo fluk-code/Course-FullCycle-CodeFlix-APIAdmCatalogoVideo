@@ -1,8 +1,9 @@
-import { PaginationOutputDTO, PaginationOutputMapper } from '../../../@seedwork/application/dto/pagination-output';
-import { SearchInputDTO } from '../../../@seedwork/application/dto/search-input';
-import IUseCase from '../../../@seedwork/application/use-case';
-import CategoryRepository from '../../domain/repositories/category.repository';
+import CategoryRepository from '@category/domain/repositories/category.repository';
+import { PaginationOutputDTO, PaginationOutputMapper } from '@core/seedwork/application/dto/pagination-output';
+import { SearchInputDTO } from '@core/seedwork/application/dto/search-input';
+import IUseCase from '@core/seedwork/application/use-case';
 import { CategoryOutputDTO, CategoryOutputMapper } from '../dto/category-output';
+
 
 export default class FindAllCategoriesUseCase implements IUseCase<Input, Output> {
 

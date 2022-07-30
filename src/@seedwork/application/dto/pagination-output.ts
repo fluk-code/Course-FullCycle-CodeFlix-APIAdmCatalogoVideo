@@ -1,5 +1,5 @@
-import Entity from '../../../@seedwork/domain/entity/entity';
-import { SearchResult } from '../../../@seedwork/domain/repository/repository-contracts';
+import Entity from '@core/seedwork/domain/entity/entity';
+import { SearchResult } from '@core/seedwork/domain/repository/repository-contracts';
 
 export type PaginationOutputDTO<Items = Entity> = {
   items: Items[];

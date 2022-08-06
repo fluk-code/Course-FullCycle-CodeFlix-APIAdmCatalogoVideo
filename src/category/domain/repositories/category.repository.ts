@@ -2,8 +2,9 @@ import {
   ISearchableRepository, 
   SearchParams as DefaultSearchParams,
   SearchResult as DefaultSearchResult
-} from '@core/seedwork/domain/repository/repository-contracts';
-import { Category } from '../entities/category';
+} from '@core/seedwork/domain/repository';
+
+import { Category } from '../entities';
 
 namespace CategoryRepository {
   export type Filter = string;

@@ -1,4 +1,4 @@
-import { Category } from '@category/domain/entities/category';
+import { Category } from '@category/domain/entities';
 import CategoryRepository from '@category/domain/repositories/category.repository';
 import CategoryInMemoryRepository from '@category/infra/repositories/in-memory/category-in-memory.repository';
 import FindAllCategoriesUseCase from '../find-all-ccategories.use-case';

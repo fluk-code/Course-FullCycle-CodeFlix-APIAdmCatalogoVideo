@@ -10,7 +10,9 @@
     "tsc:clean": "rm tsconfig.tsbuildinfo",
     "test": "jest",
     "test:cov": "npm run test -- --coverage",
-    "build:prod": "rm -rf ./dist && npm run tsc -- -b"
+    "build:prod": "rm -rf ./dist && npm run tsc -- -b",
+    "cti": "cti",
+    "cti:@core": "sh ./cti.sh"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +28,7 @@
     "@types/lodash": "^4.14.182",
     "@types/node": "^14.14.31",
     "@types/uuid": "^8.3.4",
+    "create-ts-index": "^1.14.0",
     "jest": "^28.1.0",
     "lodash": "^4.17.21",
     "ts-node-dev": "^2.0.0",

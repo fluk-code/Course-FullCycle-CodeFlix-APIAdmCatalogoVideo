@@ -1,5 +1,5 @@
 import Entity from '@core/seedwork/domain/entity/entity';
-import { UniqueEntityId } from '@core/seedwork/domain/value-objects/unique-entity-id.vo';
+import { UniqueEntityId } from '@core/seedwork/domain/value-objects';
 
 export type CategoryProperties = {
   name: string,

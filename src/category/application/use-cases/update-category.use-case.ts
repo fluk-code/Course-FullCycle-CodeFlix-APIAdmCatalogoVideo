@@ -1,6 +1,7 @@
 import CategoryRepository from '@category/domain/repositories/category.repository';
 import IUseCase from '@core/seedwork/application/use-case';
-import { CategoryOutputDTO, CategoryOutputMapper } from '../dto/category-output';
+
+import { CategoryOutputDTO, CategoryOutputMapper } from '../dto';
 
 export default class UpdateCategoryUseCase implements IUseCase<Input, Output> {
 

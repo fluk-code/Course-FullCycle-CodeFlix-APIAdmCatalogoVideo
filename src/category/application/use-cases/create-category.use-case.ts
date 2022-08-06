@@ -1,7 +1,8 @@
-import { Category } from '@category/domain/entities/category';
-import CategoryRepository from '@category/domain/repositories/category.repository';
 import IUseCase from '@core/seedwork/application/use-case';
-import { CategoryOutputDTO } from '../dto/category-output';
+
+import CategoryRepository from '@category/domain/repositories/category.repository';
+import { Category } from '@category/domain/entities';
+import { CategoryOutputDTO } from '../dto';
 
 
 export default class CreateCategoryUseCase implements IUseCase<Input, Output> {

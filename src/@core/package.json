@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "imports": {
+    "#seedwork/*": "./dist/@seedwork/*.js",
+    "#category/*": "./dist/@category/*.js"
+  },
+  "exports": {
+    "./category/domain": "./dist/category/domain/index.js"
+  },
   "scripts": {
     "ts-node-dev": "ts-node-dev",
     "tsc": "tsc",
@@ -10,17 +17,14 @@
     "tsc:clean": "rm tsconfig.tsbuildinfo",
     "test": "jest",
     "test:cov": "npm run test -- --coverage",
-    "build:prod": "rm -rf ./dist && npm run tsc -- -b",
+    "build": "tsc -b ./tsconfig.json",
+    "build:workspace": "tsc -b ./tsconfig.json",
     "cti": "cti",
     "cti:@core": "sh ./cti.sh"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "imports": {
-    "#seedwork/*": "./dist/@seedwork/*.js",
-    "#category/*": "./dist/@category/*.js"
-  },
   "devDependencies": {
     "@swc/core": "^1.2.196",
     "@swc/jest": "^0.2.21",

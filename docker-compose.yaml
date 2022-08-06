@@ -6,3 +6,5 @@ services:
     container_name: api-micro-typescript-admcatalogovideos
     volumes:
       - .:/home/node/app
+    ports:
+      - 3000:3000

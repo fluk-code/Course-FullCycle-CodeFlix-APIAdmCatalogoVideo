@@ -7,7 +7,6 @@ tsconfig.tsbuildinfo
 # Tests
 __coverage/
 
-
 # Containers
 .docker/zsh/history/.zsh_history
 

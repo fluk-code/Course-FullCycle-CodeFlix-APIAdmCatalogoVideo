@@ -1,7 +1,10 @@
-import { Category } from '@category/domain/entities';
+import { Category } from "#category/domain/entities/category";
 import CategoryInMemoryRepository from './category-in-memory.repository';
 
-describe(`${CategoryInMemoryRepository.name}`, () => {
+const categoryInMemoryRepositoryName = CategoryInMemoryRepository.name;
+
+describe(`${categoryInMemoryRepositoryName}`, () => {
+
   let repository: CategoryInMemoryRepository;
   let now: Date;
 

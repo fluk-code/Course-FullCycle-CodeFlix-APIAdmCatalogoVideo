@@ -1,7 +1,12 @@
-import { UniqueEntityId } from '@core/seedwork/domain/value-objects';
+import { UniqueEntityId } from '#seedwork/domain/value-objects';
 import { Category, CategoryProperties } from './category';
 
-describe(`${Category.name} Unit Test`, () => {
+const categoryName = Category.name;
+const categoryMethodUpdateName = Category.prototype.update.name;
+const categoryMethodActivateName = Category.prototype.activate.name;
+const categoryMethodDeactivateName = Category.prototype.deactivate.name;
+
+describe(`${categoryName} Unit Test`, () => {
   beforeAll(() => {
     jest.useFakeTimers('modern').setSystemTime(new Date());
   })
@@ -115,7 +120,7 @@ describe(`${Category.name} Unit Test`, () => {
   })
 
   describe(`Methods Tests`, () => {
-    it(`should update name and description when ${Category.prototype.update.name} is called with correct values`, () => {
+    it(`should update name and description when ${categoryMethodUpdateName} is called with correct values`, () => {
       const category = new Category({
         name: 'some name',
         description: 'some description'
@@ -127,7 +132,7 @@ describe(`${Category.name} Unit Test`, () => {
       expect(category.description).toBe('description updated');
     });
 
-    it(`should activate category when ${Category.prototype.activate.name} is called`, () => {
+    it(`should activate category when ${categoryMethodActivateName} is called`, () => {
       const category = new Category({
         name: 'some name',
         description: 'some description',
@@ -139,7 +144,7 @@ describe(`${Category.name} Unit Test`, () => {
       expect(category.isActive).toBeTruthy();
     });
 
-    it(`should activate category when ${Category.prototype.deactivate.name} is called`, () => {
+    it(`should activate category when ${categoryMethodDeactivateName} is called`, () => {
       const category = new Category({
         name: 'some name',
         description: 'some description',

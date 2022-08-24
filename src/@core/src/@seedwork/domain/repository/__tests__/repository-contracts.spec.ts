@@ -1,6 +1,9 @@
 import { SearchParams, SearchResult, SortDirection } from '../repository-contracts';
 
-describe(`${SearchParams.name} Unit Tests`, () => {
+const searchParamsName = SearchParams.name;
+const searchResultName = SearchResult.name;
+
+describe(`${searchParamsName} Unit Tests`, () => {
   it('should define page property with correct values when data provided is invalid', () => {
     const params = new SearchParams();
     expect(params.page).toBe(1);
@@ -164,7 +167,7 @@ describe(`${SearchParams.name} Unit Tests`, () => {
   });
 });
 
-describe(`${SearchResult.name} Searchable Unit Tests`, () => {
+describe(`${searchResultName} Searchable Unit Tests`, () => {
   test('Constructor properties', () => {
     let result = new SearchResult({
       items: ['some entity 1', 'some entity 2'] as any,

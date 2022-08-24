@@ -1,19 +1,19 @@
-import { NotFoundError } from '@core/seedwork/domain/errors/not-found.error';
-import { UniqueEntityId } from '@core/seedwork/domain/value-objects/unique-entity-id.vo';
+import { NotFoundError } from '#seedwork/domain/errors';
+import { UniqueEntityId } from '#seedwork/domain/value-objects';
 
-import { Category } from '@category/domain/entities';
-import CategoryInMemoryRepository from '@category/infra/repositories/in-memory/category-in-memory.repository';
-import DeleteCategoryUseCase, { Input } from '../delete-category.use-case';
+import { Category } from '#category/domain/entities/category';
+import CategoryInMemoryRepository from '#category/infra/repositories/in-memory/category-in-memory.repository';
+import DeleteCategoryUseCase from '../delete-category.use-case';
 
-const deleteCategoryUseCaseName = DeleteCategoryUseCase.name;
+const deleteCategoryUseCaseName = DeleteCategoryUseCase.UseCase.name;
 
 describe(`${deleteCategoryUseCaseName} Unit Tests`, () => {
-  let useCase: DeleteCategoryUseCase;
+  let useCase: DeleteCategoryUseCase.UseCase;
   let repository: CategoryInMemoryRepository;
 
   beforeEach(() => {
     repository = new CategoryInMemoryRepository();
-    useCase = new DeleteCategoryUseCase(repository);
+    useCase = new DeleteCategoryUseCase.UseCase(repository);
   });
 
   afterEach(() => {
@@ -28,7 +28,7 @@ describe(`${deleteCategoryUseCaseName} Unit Tests`, () => {
 
   it('should throws error when entity id is not provided', async () => {
     expect(
-      () => useCase.execute({} as Input)
+      () => useCase.execute({} as DeleteCategoryUseCase.Input)
     ).rejects.toThrow(new NotFoundError('Entity Not Found using ID undefined'));
   });
 

@@ -1,6 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { Category } from '@fc/Core_AdmCatalogoVideo/category/domain';
+
+import { CreateCategoryUseCase } from '@fc/Core_AdmCatalogoVideo/category/application';
 
 @Controller()
 export class AppController {
@@ -8,10 +9,7 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    const category = new Category({
-      name: 'a',
-    });
-    console.log(category);
+    console.log(CreateCategoryUseCase.UseCase);
     return this.appService.getHello();
   }
 }

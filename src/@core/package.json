@@ -5,10 +5,24 @@
   "main": "index.js",
   "imports": {
     "#seedwork/*": "./dist/@seedwork/*.js",
-    "#category/*": "./dist/@category/*.js"
+    "#category/*": "./dist/category/*.js"
   },
   "exports": {
-    "./category/domain": "./dist/category/domain/index.js"
+    "./@seedwork/application": "./dist/@seedwork/application/index.js",
+    "./@seedwork/domain": "./dist/@seedwork/domain/index.js",
+    "./category/domain": "./dist/category/domain/index.js",
+    "./category/application": "./dist/category/application/index.js",
+    "./category/infra": "./dist/category/infra/index.js"
+  },
+  "typesVersions": {
+    ">=4.0": {
+      "@seedwork/application": ["./dist/@seedwork/application/index.d.ts"],
+      "@seedwork/domain": ["./dist/@seedwork/domain/index.d.ts"],
+      "@seedwork/infra": ["./dist/@seedwork/infra/index.d.ts"],
+      "category/domain": ["./dist/category/domain/index.d.ts"],
+      "category/application": ["./dist/category/application/index.d.ts"],
+      "category/infra": ["./dist/category/application/index.d.ts"]
+    }
   },
   "scripts": {
     "ts-node-dev": "ts-node-dev",
@@ -18,7 +32,7 @@
     "test": "jest",
     "test:cov": "npm run test -- --coverage",
     "build": "tsc -b ./tsconfig.json",
-    "build:workspace": "tsc -b ./tsconfig.json",
+    "build:watch": "tsc -b ./tsconfig.json -w",
     "cti": "cti",
     "cti:@core": "sh ./cti.sh"
   },

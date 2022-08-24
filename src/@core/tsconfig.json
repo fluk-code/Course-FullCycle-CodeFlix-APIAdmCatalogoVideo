@@ -4,9 +4,9 @@
     "baseUrl": "./src",
     "outDir": "./dist",
     "paths": {
-      "@core/seedwork/*": ["./@seedwork/*"],
-      "@category/*": ["./category/*"]
+      "#seedwork/*": ["./@seedwork/*"],
+      "#category/*": ["./category/*"]
     },
   },
-  "include": ["src/"]
+  "include": ["./src"]
 }

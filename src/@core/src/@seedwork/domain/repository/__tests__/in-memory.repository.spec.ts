@@ -3,24 +3,32 @@ import { UniqueEntityId } from '../../value-objects/unique-entity-id.vo';
 import { InMemoryRepository, InMemorySearchableRepository } from '../in-memory.repository';
 import { SearchParams, SearchResult } from '../repository-contracts';
 
+const repositoryName = InMemoryRepository.name;
+const repositoryMethodInsertName = InMemoryRepository.prototype.insert.name;
+const repositoryMethodUpdateName = InMemoryRepository.prototype.update.name;
+const repositoryMethodDeleteName = InMemoryRepository.prototype.delete.name;
+const repositoryMethodFindAllName = InMemoryRepository.prototype.findAll.name;
+
+const repositorySearchableName = InMemorySearchableRepository.name;
+const repositorySearchableMethodSearchName = InMemorySearchableRepository.prototype.search.name;
 
 type StubEntityProps = {
   name: string,
   price: number
 };
 
-class StubEntity extends Entity<StubEntityProps> {};
+class StubEntity extends Entity<StubEntityProps> {}
 
-class SubInMemoryRepository extends InMemoryRepository<StubEntity> {};
+class SubInMemoryRepository extends InMemoryRepository<StubEntity> {}
 
-describe(`${InMemoryRepository.name} Unit Tests`, () => {
+describe(`${repositoryName} Unit Tests`, () => {
   let repository: SubInMemoryRepository;
 
   beforeEach(() =>{
     repository = new SubInMemoryRepository();
   });
 
-  describe(`${InMemoryRepository.prototype.insert.name}`, () => {
+  describe(`${repositoryMethodInsertName}`, () => {
     it('should insert a new entity', async () => {
       const entity = new StubEntity({ name: 'some value', price: 5 });
       await repository.insert(entity);
@@ -29,7 +37,7 @@ describe(`${InMemoryRepository.name} Unit Tests`, () => {
     });
   });
 
-  describe(`${InMemoryRepository.prototype.findById.name}`, () => {
+  describe(`${repositoryMethodFindAllName}`, () => {
     it('should throws error when entity not found', async () => {
       const validUuid = 'cda16f22-e6ec-4ea3-a804-3aeee4b92581';
    
@@ -49,7 +57,7 @@ describe(`${InMemoryRepository.name} Unit Tests`, () => {
     });
   });
 
-  describe(`${InMemoryRepository.prototype.findAll.name}`, () => {
+  describe(`${repositoryMethodFindAllName}`, () => {
     it('should return empty object when is not insert an entity', async () => {
       expect(repository.findAll()).toBeTruthy();
     });
@@ -78,7 +86,7 @@ describe(`${InMemoryRepository.name} Unit Tests`, () => {
     });
   });
   
-  describe(`${InMemoryRepository.prototype.update.name}`, () => {
+  describe(`${repositoryMethodUpdateName}`, () => {
     it('should throws error when entity not found', async () => {
       const entity = new StubEntity({ name: 'some value', price: 5 });
       
@@ -96,7 +104,7 @@ describe(`${InMemoryRepository.name} Unit Tests`, () => {
     });
   });
 
-  describe(`${InMemoryRepository.prototype.delete.name}`, () => {
+  describe(`${repositoryMethodDeleteName}`, () => {
     it('should throws error when entity not found', async () => {
       const validUuid = 'cda16f22-e6ec-4ea3-a804-3aeee4b92581';
    
@@ -145,7 +153,7 @@ class SubInMemorySearchableRepository extends InMemorySearchableRepository<StubE
   }
 }
 
-describe(`${InMemorySearchableRepository.name} Searchable Unit Tests`, () => {
+describe(`${repositorySearchableName} Searchable Unit Tests`, () => {
   let repository: SubInMemorySearchableRepository;
 
   beforeEach(() =>{
@@ -252,7 +260,7 @@ describe(`${InMemorySearchableRepository.name} Searchable Unit Tests`, () => {
     });
   });
 
-  describe(`${InMemorySearchableRepository.prototype.search.name}`, () => {
+  describe(`${repositorySearchableMethodSearchName}`, () => {
     it('should apply only paginate when other params are null', async () => {
       const entity = new StubEntity({ name: 'some name', price: 1 });
       const items = Array(16).fill(entity);
@@ -403,9 +411,9 @@ describe(`${InMemorySearchableRepository.name} Searchable Unit Tests`, () => {
         new StubEntity({ name: 'some filtered name', price: 1 }),
         new StubEntity({ name: 'some filtered name', price: 2 }),
         new StubEntity({ name: 'some filtered name', price: 3 }),
-        new StubEntity({ name: 'some orther name', price: 4 }),
-        new StubEntity({ name: 'some orther name', price: 5 }),
-        new StubEntity({ name: 'some orther name', price: 6 })
+        new StubEntity({ name: 'some other name', price: 4 }),
+        new StubEntity({ name: 'some other name', price: 5 }),
+        new StubEntity({ name: 'some other name', price: 6 })
       ];
       
       repository.items = items;

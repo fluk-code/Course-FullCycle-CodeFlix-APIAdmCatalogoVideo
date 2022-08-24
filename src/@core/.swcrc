@@ -6,8 +6,8 @@
       },
       "baseUrl": "./src",
       "paths": {
-        "@core/seedwork/*": [ "./@seedwork/*" ],
-        "@category/*": [ "./category/*" ]
+        "#seedwork/*": [ "./@seedwork/*" ],
+        "#category/*": [ "./category/*" ]
       }
   }
 }

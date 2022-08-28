@@ -9,7 +9,7 @@ export default {
   transform: {
     "^.+\\.(t|j)s$": "@swc/jest"
   },
-  collectCoverageFrom: ["**/*.(t|j)s"],
+  collectCoverageFrom: ["**/*.(t|j)s", "@swc/jest"],
   coverageDirectory: "../coverage",
   testEnvironment: "node",
   moduleNameMapper: {

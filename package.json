@@ -9,6 +9,10 @@
   "dependencies": {
     "create-ts-index": "^1.14.0"
   },
+  "devDependencies": {
+    "@swc/core": "^1.2.196",
+    "@swc/jest": "^0.2.21"
+  },
   "workspaces": [
     "./src/@core",
     "./src/nestjs"

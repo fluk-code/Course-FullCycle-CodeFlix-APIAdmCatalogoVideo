@@ -9,12 +9,18 @@
   "dependencies": {
     "create-ts-index": "^1.14.0"
   },
+  "devDependencies": {
+    "@swc/core": "^1.2.196",
+    "@swc/jest": "^0.2.21"
+  },
   "workspaces": [
     "./src/@core",
     "./src/nestjs"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart:dev": "npm run build -w @fc/Core_AdmCatalogoVideo",
+    "start:dev": "npm run build:watch -w @fc/Core_AdmCatalogoVideo & npm run start:dev -w @fc/Nestjs_AdmCatalogoVideo",
+    "test": "jest"
   },
   "repository": {
     "type": "git",

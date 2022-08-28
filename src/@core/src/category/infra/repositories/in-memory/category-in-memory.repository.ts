@@ -1,11 +1,12 @@
 
-import { InMemorySearchableRepository, SortDirection } from '@core/seedwork/domain/repository';
+import { Category } from '#category/domain/entities/category';
+import CategoryRepository from '#category/domain/repositories/category.repository';
 
-import { Category } from '@category/domain/entities';
-import CategoryRepository from '@category/domain/repositories/category.repository';
+import { SortDirection } from '#seedwork/domain/repository/repository-contracts';
+import { InMemorySearchableRepository } from '#seedwork/domain/repository/in-memory.repository';
 
 
-export default class CategoryInMemoryRepository 
+export class CategoryInMemoryRepository
   extends InMemorySearchableRepository<
     Category
   > 
@@ -36,3 +37,5 @@ export default class CategoryInMemoryRepository
       : super.applySort(items, sort, sortDirection);
   }
 }
+
+export default CategoryInMemoryRepository;

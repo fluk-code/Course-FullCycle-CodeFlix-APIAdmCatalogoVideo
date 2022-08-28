@@ -4,6 +4,10 @@
  */
 
 export default {
+  displayName: {
+    name: "@core",
+    color:"blue"
+  },
   clearMocks: true,
   coverageDirectory: "../__coverage",
   // covarageReporters: [

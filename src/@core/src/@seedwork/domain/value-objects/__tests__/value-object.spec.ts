@@ -1,11 +1,11 @@
 import ValueObject from '../value-object';
 
+const valueObjectName = ValueObject.name;
 
 class StubValueObject extends ValueObject {
-
 }
 
-describe(`${ValueObject.name} Unit Tests`, () => {
+describe(`${valueObjectName} Unit Tests`, () => {
 
   it('should set value', () => {
     const date = new Date()

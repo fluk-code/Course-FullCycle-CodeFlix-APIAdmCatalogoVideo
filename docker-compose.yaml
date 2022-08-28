@@ -4,7 +4,8 @@ services:
   app:
     build: .
     container_name: api-micro-typescript-admcatalogovideos
+    command: .docker/start.sh
     volumes:
       - .:/home/node/app
     ports:
-      - 3000:3000
+      - 3001:3001

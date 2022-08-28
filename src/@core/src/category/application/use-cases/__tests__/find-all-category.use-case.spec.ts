@@ -1,17 +1,17 @@
-import { Category } from '@category/domain/entities';
-import CategoryRepository from '@category/domain/repositories/category.repository';
-import CategoryInMemoryRepository from '@category/infra/repositories/in-memory/category-in-memory.repository';
-import FindAllCategoriesUseCase from '../find-all-ccategories.use-case';
+import { Category } from '#category/domain/entities/category';
+import CategoryRepository from '#category/domain/repositories/category.repository';
+import CategoryInMemoryRepository from '#category/infra/repositories/in-memory/category-in-memory.repository';
+import FindAllCategoriesUseCase from '../find-all-categories.use-case';
 
-const findAllCategoriesUseCaseName = FindAllCategoriesUseCase.name;
+const findAllCategoriesUseCaseName = FindAllCategoriesUseCase.UseCase.name;
 
 describe(`${findAllCategoriesUseCaseName} Unit Tests`, () => {
-  let useCase: FindAllCategoriesUseCase;
+  let useCase: FindAllCategoriesUseCase.UseCase;
   let repository: CategoryInMemoryRepository;
 
   beforeEach(() => {
     repository = new CategoryInMemoryRepository();
-    useCase = new FindAllCategoriesUseCase(repository);
+    useCase = new FindAllCategoriesUseCase.UseCase(repository);
   });
 
   afterEach(() => {

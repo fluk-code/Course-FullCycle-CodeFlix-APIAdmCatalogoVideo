@@ -2,10 +2,11 @@ import { UniqueEntityId } from '../value-objects/unique-entity-id.vo';
 import Entity from './entity'
 
 import { validate as uuidValidate } from 'uuid';
+const entityName = Entity.name;
 
 class StubEntity extends Entity<{prop1: string, prop2: number}> {}
 
-describe(`${Entity.name} Unit Tests`, () => {
+describe(`${entityName} Unit Tests`, () => {
   it('should set props and id', () => {
     const arrange = {
       prop1: 'some value',

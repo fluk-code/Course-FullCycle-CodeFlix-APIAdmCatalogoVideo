@@ -1,20 +1,20 @@
-import { NotFoundError } from '@core/seedwork/domain/errors';
+import { NotFoundError } from '#seedwork/domain/errors';
 
-import { Category } from '@category/domain/entities';
-import CategoryInMemoryRepository from '@category/infra/repositories/in-memory/category-in-memory.repository';
+import { Category } from '#category/domain/entities/category';
 
-import UpdateCategoryUseCase, { Input } from '../update-category.use-case';
+import UpdateCategoryUseCase from '../update-category.use-case';
+import { CategoryInMemoryRepository } from '#category/infra';
 
 
-const updateCategoryUseCaseName = UpdateCategoryUseCase.name;
+const updateCategoryUseCaseName = UpdateCategoryUseCase.UseCase.name;
 
 describe(`${updateCategoryUseCaseName} Unit Tests`, () => {
-  let useCase: UpdateCategoryUseCase;
+  let useCase: UpdateCategoryUseCase.UseCase;
   let repository: CategoryInMemoryRepository;
 
   beforeEach(() => {
     repository = new CategoryInMemoryRepository();
-    useCase = new UpdateCategoryUseCase(repository);
+    useCase = new UpdateCategoryUseCase.UseCase(repository);
   });
 
   afterEach(() => {
@@ -86,13 +86,13 @@ describe(`${updateCategoryUseCaseName} Unit Tests`, () => {
   it('should update a category return the entity when isActive is provided', async () => {
     const category = new Category({ name: 'some name test'});
     repository.items.push(category);
-    let input = {} as Input;
+    let input = {};
 
     input = {
       id: category.id,
       name: 'some name test',
     }
-    const outputNotIsActive =await useCase.execute(input);
+    const outputNotIsActive =await useCase.execute(input as UpdateCategoryUseCase.Input);
 
 
     input = {
@@ -100,14 +100,14 @@ describe(`${updateCategoryUseCaseName} Unit Tests`, () => {
       name: 'some name test',
       isActive: true
     }
-    const outputTrueIsActive =await useCase.execute(input);
+    const outputTrueIsActive =await useCase.execute(input as UpdateCategoryUseCase.Input);
     
     input = {
       id: category.id,
       name: 'some name test',
       isActive: false
     }
-    const outputFalseIsActive =await useCase.execute(input);
+    const outputFalseIsActive =await useCase.execute(input as UpdateCategoryUseCase.Input);
 
     expect(outputNotIsActive).toStrictEqual({
       id: repository.items[0].id,

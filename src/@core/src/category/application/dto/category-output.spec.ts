@@ -1,7 +1,9 @@
-import { Category } from '@category/domain/entities';
+import { Category } from '#category/domain/entities';
 import { CategoryOutputMapper } from './category-output';
 
-describe(`${CategoryOutputMapper.name} Unit Tests`, () => {
+const categoryOutputMapperName = CategoryOutputMapper.name;
+
+describe(`${categoryOutputMapperName} Unit Tests`, () => {
   it('should convert a category in output', () => {
     const createdAt = new Date();
     const entity = new Category({

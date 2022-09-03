@@ -1,25 +1,53 @@
 import { Module } from '@nestjs/common';
-import { CategoriesService } from './categories.service';
 import { CategoriesController } from './categories.controller';
 
-import { CreateCategoryUseCase } from '@fc/Core_AdmCatalogoVideo/category/application';
-import { CategoryInMemoryRepository } from '@fc/Core_AdmCatalogoVideo/dist/category/infra';
+import {
+  CreateCategoryUseCase,
+  FindCategoryUseCase,
+  FindAllCategoriesUseCase,
+  UpdateCategoryUseCase,
+  DeleteCategoryUseCase,
+} from '@fc/Core_AdmCatalogoVideo/category/application';
+import { CategoryInMemoryRepository } from '@fc/Core_AdmCatalogoVideo/category/infra';
 
-import CategoryRepository from '@fc/Core_AdmCatalogoVideo/dist/category/domain/repositories/category.repository';
+import CategoryRepository from '@fc/Core_AdmCatalogoVideo/category/domain';
 
 @Module({
   controllers: [CategoriesController],
   providers: [
-    CategoriesService,
     {
-      provide: 'CategoryRepository',
+      provide: 'CategoryInMemoryRepository',
       useClass: CategoryInMemoryRepository,
     },
     {
       provide: CreateCategoryUseCase.UseCase,
-      useFactory: (categoryRepo: CategoryRepository.Repository) =>
+      useFactory: (categoryRepo: CategoryRepository.Category) =>
         new CreateCategoryUseCase.UseCase(categoryRepo),
-      inject: ['CategoryRepository'],
+      inject: ['CategoryInMemoryRepository'],
+    },
+    {
+      provide: FindCategoryUseCase.UseCase,
+      useFactory: (categoryRepo: CategoryRepository.Category) =>
+        new FindCategoryUseCase.UseCase(categoryRepo),
+      inject: ['CategoryInMemoryRepository'],
+    },
+    {
+      provide: FindAllCategoriesUseCase.UseCase,
+      useFactory: (categoryRepo: CategoryRepository.Category) =>
+        new FindAllCategoriesUseCase.UseCase(categoryRepo),
+      inject: ['CategoryInMemoryRepository'],
+    },
+    {
+      provide: UpdateCategoryUseCase.UseCase,
+      useFactory: (categoryRepo: CategoryRepository.Category) =>
+        new UpdateCategoryUseCase.UseCase(categoryRepo),
+      inject: ['CategoryInMemoryRepository'],
+    },
+    {
+      provide: DeleteCategoryUseCase.UseCase,
+      useFactory: (categoryRepo: CategoryRepository.Category) =>
+        new DeleteCategoryUseCase.UseCase(categoryRepo),
+      inject: ['CategoryInMemoryRepository'],
     },
   ],
 })

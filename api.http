@@ -1,6 +1,22 @@
 GET http://localhost:3001
 
 ### CATEGORIES
-GET http://localhost:3001/categories
-###
 POST http://localhost:3001/categories
+Content-Type: application/json
+
+{
+  "name": "some name"
+}
+###
+GET http://localhost:3001/categories/
+###
+GET http://localhost:3001/categories/a0f841d2-1d61-4de6-9460-49c33f5ba27d
+###
+PUT http://localhost:3001/categories/a0f841d2-1d61-4de6-9460-49c33f5ba27d
+Content-Type: application/json
+
+{
+  "name": "new name"
+}
+###
+DELETE http://localhost:3001/categories/a0f841d2-1d61-4de6-9460-49c33f5ba27d

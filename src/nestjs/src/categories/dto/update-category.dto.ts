@@ -1,6 +1,8 @@
 import { UpdateCategoryUseCase } from '@fc/Core_AdmCatalogoVideo/category/application';
-export class UpdateCategoryDto implements UpdateCategoryUseCase.Input {
-  id: string;
+
+type UpdateCategoryUseCaseInput = Omit<UpdateCategoryUseCase.Input, 'id'>;
+
+export class UpdateCategoryDto implements UpdateCategoryUseCaseInput {
   name: string;
   description?: string;
   isActive?: boolean;

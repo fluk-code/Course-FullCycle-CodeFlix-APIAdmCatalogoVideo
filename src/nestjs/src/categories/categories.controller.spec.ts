@@ -1,8 +1,10 @@
 import {
   CategoryOutputDTO,
   CreateCategoryUseCase,
+  FindAllCategoriesUseCase,
   UpdateCategoryUseCase,
 } from '@fc/Core_AdmCatalogoVideo/category/application';
+import { SortDirection } from '@fc/Core_AdmCatalogoVideo/dist/@seedwork/domain/repository';
 import { CategoriesController } from './categories.controller';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -122,5 +124,46 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
     expect(mockFindUseCase.execute).toBeCalledWith({ id });
     expect(categoryOutput).toStrictEqual(expectedOutput);
     expect(controller.findOne(id)).toBeInstanceOf(Promise<CategoryOutputDTO>);
+  });
+
+  it('should search a category', async () => {
+    const id = 'some-valid-uuid';
+    const expectedOutput: FindAllCategoriesUseCase.Output = {
+      items: {
+        id,
+        name: 'some name',
+        description: 'some description',
+        isActive: true,
+        createdAt: new Date(),
+      },
+      currentPage: 1,
+      lastPage: 1,
+      perPage: 2,
+      total: 1,
+    };
+
+    const mockFindAllUseCase = {
+      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
+    };
+
+    const searchParams: FindAllCategoriesUseCase.Input = {
+      page: 1,
+      perPage: 2,
+      sort: 'some name',
+      sortDirection: 'desc',
+      filter: 'test',
+    };
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-expect-error
+    controller['findAllUseCase'] = mockFindAllUseCase;
+    const categoryOutput = await controller.search(searchParams);
+
+    expect(mockFindAllUseCase.execute).toBeCalledTimes(1);
+    expect(mockFindAllUseCase.execute).toBeCalledWith(searchParams);
+    expect(categoryOutput).toStrictEqual(expectedOutput);
+    expect(controller.search(searchParams)).toBeInstanceOf(
+      Promise<CategoryOutputDTO[]>,
+    );
   });
 });

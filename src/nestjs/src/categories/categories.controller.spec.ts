@@ -74,4 +74,24 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
     });
     expect(categoryOutput).toStrictEqual(expectedOutput);
   });
+
+  it('should delete a category', async () => {
+    const expectedOutput = undefined;
+
+    const mockDeleteUseCase = {
+      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
+    };
+
+    const id = 'some-valid-uuid';
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-expect-error
+    controller['deleteUseCase'] = mockDeleteUseCase;
+
+    const categoryOutput = await controller.remove(id);
+
+    expect(mockDeleteUseCase.execute).toBeCalledTimes(1);
+    expect(mockDeleteUseCase.execute).toBeCalledWith({ id });
+    expect(categoryOutput).toStrictEqual(expectedOutput);
+    expect(controller.remove(id)).toBeInstanceOf(Promise);
+  });
 });

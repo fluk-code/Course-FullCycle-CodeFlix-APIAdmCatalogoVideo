@@ -1,7 +1,9 @@
 import {
   CategoryOutputDTO,
   CreateCategoryUseCase,
+  DeleteCategoryUseCase,
   FindAllCategoriesUseCase,
+  FindCategoryUseCase,
   UpdateCategoryUseCase,
 } from '@fc/Core_AdmCatalogoVideo/category/application';
 import { SortDirection } from '@fc/Core_AdmCatalogoVideo/dist/@seedwork/domain/repository';
@@ -103,7 +105,7 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
 
   it('should find a category', async () => {
     const id = 'some-valid-uuid';
-    const expectedOutput: UpdateCategoryUseCase.Output = {
+    const expectedOutput: FindCategoryUseCase.Output = {
       id,
       name: 'updated name',
       description: 'updated description',

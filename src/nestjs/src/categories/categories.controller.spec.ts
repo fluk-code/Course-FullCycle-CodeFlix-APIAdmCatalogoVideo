@@ -1,12 +1,10 @@
 import {
   CategoryOutputDTO,
   CreateCategoryUseCase,
-  DeleteCategoryUseCase,
   FindAllCategoriesUseCase,
   FindCategoryUseCase,
   UpdateCategoryUseCase,
 } from '@fc/Core_AdmCatalogoVideo/category/application';
-import { SortDirection } from '@fc/Core_AdmCatalogoVideo/dist/@seedwork/domain/repository';
 import { CategoriesController } from './categories.controller';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';

@@ -98,4 +98,29 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
     expect(categoryOutput).toStrictEqual(expectedOutput);
     expect(controller.remove(id)).toBeInstanceOf(Promise);
   });
+
+  it('should find a category', async () => {
+    const id = 'some-valid-uuid';
+    const expectedOutput: UpdateCategoryUseCase.Output = {
+      id,
+      name: 'updated name',
+      description: 'updated description',
+      isActive: true,
+      createdAt: new Date(),
+    };
+
+    const mockFindUseCase = {
+      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
+    };
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-expect-error
+    controller['findUseCase'] = mockFindUseCase;
+    const categoryOutput = await controller.findOne(id);
+
+    expect(mockFindUseCase.execute).toBeCalledTimes(1);
+    expect(mockFindUseCase.execute).toBeCalledWith({ id });
+    expect(categoryOutput).toStrictEqual(expectedOutput);
+    expect(controller.findOne(id)).toBeInstanceOf(Promise<CategoryOutputDTO>);
+  });
 });

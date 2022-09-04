@@ -1,4 +1,5 @@
 import {
+  CategoryOutputDTO,
   CreateCategoryUseCase,
   UpdateCategoryUseCase,
 } from '@fc/Core_AdmCatalogoVideo/category/application';
@@ -15,7 +16,7 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
     controller = new CategoriesController();
   });
 
-  it('should create a category', () => {
+  it('should create a category', async () => {
     const expectedOutput: CreateCategoryUseCase.Output = {
       id: 'some-valid-uuid',
       name: 'some name',
@@ -25,7 +26,7 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
     };
 
     const mockCreateUseCase = {
-      execute: jest.fn().mockReturnValue(expectedOutput),
+      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
     };
 
     const input: CreateCategoryDto = {
@@ -36,14 +37,15 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
     controller['createUseCase'] = mockCreateUseCase;
-    const categoryOutput = controller.create(input);
+    const categoryOutput = await controller.create(input);
 
     expect(mockCreateUseCase.execute).toBeCalledTimes(1);
     expect(mockCreateUseCase.execute).toBeCalledWith(input);
     expect(categoryOutput).toStrictEqual(expectedOutput);
+    expect(controller.create(input)).toBeInstanceOf(Promise<CategoryOutputDTO>);
   });
 
-  it('should update a category', () => {
+  it('should update a category', async () => {
     const id = 'some-valid-uuid';
     const expectedOutput: UpdateCategoryUseCase.Output = {
       id,
@@ -54,7 +56,7 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
     };
 
     const mockUpdateUseCase = {
-      execute: jest.fn().mockReturnValue(expectedOutput),
+      execute: jest.fn().mockReturnValue(Promise.resolve(expectedOutput)),
     };
 
     const input: UpdateCategoryDto = {
@@ -65,7 +67,7 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
     controller['updateUseCase'] = mockUpdateUseCase;
-    const categoryOutput = controller.update(id, input);
+    const categoryOutput = await controller.update(id, input);
 
     expect(mockUpdateUseCase.execute).toBeCalledTimes(1);
     expect(mockUpdateUseCase.execute).toBeCalledWith({
@@ -73,6 +75,9 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
       ...input,
     });
     expect(categoryOutput).toStrictEqual(expectedOutput);
+    expect(controller.update(id, input)).toBeInstanceOf(
+      Promise<CategoryOutputDTO>,
+    );
   });
 
   it('should delete a category', async () => {
@@ -86,7 +91,6 @@ describe(`${CategoriesControllerName} Unit Tests`, () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
     controller['deleteUseCase'] = mockDeleteUseCase;
-
     const categoryOutput = await controller.remove(id);
 
     expect(mockDeleteUseCase.execute).toBeCalledTimes(1);

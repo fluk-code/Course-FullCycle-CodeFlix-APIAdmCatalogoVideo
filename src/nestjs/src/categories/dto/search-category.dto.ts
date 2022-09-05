@@ -1,5 +1,5 @@
 import { FindAllCategoriesUseCase } from '@fc/Core_AdmCatalogoVideo/category/application';
-import { SortDirection } from '@fc/Core_AdmCatalogoVideo/dist/@seedwork/domain/repository';
+import { SortDirection } from '@fc/Core_AdmCatalogoVideo/@seedwork/domain';
 
 export class SearchCategoryDto implements FindAllCategoriesUseCase.Input {
   page?: number;

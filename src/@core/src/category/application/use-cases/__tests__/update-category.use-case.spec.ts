@@ -3,7 +3,7 @@ import { NotFoundError } from '#seedwork/domain/errors';
 import { Category } from '#category/domain/entities/category';
 
 import UpdateCategoryUseCase from '../update-category.use-case';
-import { CategoryInMemoryRepository } from '#category/infra';
+import { CategoryInMemoryRepository } from '#category/infra/db/in-memory';
 
 
 const updateCategoryUseCaseName = UpdateCategoryUseCase.UseCase.name;

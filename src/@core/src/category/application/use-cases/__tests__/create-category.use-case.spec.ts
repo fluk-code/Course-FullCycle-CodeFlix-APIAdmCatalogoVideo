@@ -1,4 +1,4 @@
-import CategoryInMemoryRepository from '#category/infra/repositories/in-memory/category-in-memory.repository';
+import { CategoryInMemoryRepository } from '#category/infra/db/in-memory/repositories';
 import CreateCategoryUseCase from '../create-category.use-case';
 
 const createCategoryUseCaseUseCaseName = CreateCategoryUseCase.UseCase.name;

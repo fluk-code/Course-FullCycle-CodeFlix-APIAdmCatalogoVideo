@@ -2,8 +2,8 @@ import { NotFoundError } from '#seedwork/domain/errors';
 import { UniqueEntityId } from '#seedwork/domain/value-objects';
 
 import { Category } from '#category/domain/entities/category';
-import CategoryInMemoryRepository from '#category/infra/repositories/in-memory/category-in-memory.repository';
 import DeleteCategoryUseCase from '../delete-category.use-case';
+import { CategoryInMemoryRepository } from '#category/infra/db/in-memory/repositories';
 
 const deleteCategoryUseCaseName = DeleteCategoryUseCase.UseCase.name;
 

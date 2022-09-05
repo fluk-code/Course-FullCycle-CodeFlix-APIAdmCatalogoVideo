@@ -1,5 +1,5 @@
 import { Category } from '#category/domain/entities/category';
-import CategoryInMemoryRepository from '#category/infra/repositories/in-memory/category-in-memory.repository';
+import { CategoryInMemoryRepository } from '#category/infra/db/in-memory/repositories';
 import { NotFoundError } from '#seedwork/domain/errors';
 import FindCategoryUseCase from '../find-category.use-case';
 

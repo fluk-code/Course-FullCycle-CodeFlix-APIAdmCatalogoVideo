@@ -21,17 +21,17 @@ extends Model<CategoryModelProperties>
 {
   @PrimaryKey
   @Column({ type: DataType.UUID })
-  id: string;
+  declare id: string;
 
   @Column({ type: DataType.STRING(255), allowNull: false })
-  name: string;
+  declare name: string;
 
   @Column({ type: DataType.TEXT })
-  description: string | null;
+  declare description: string | null;
 
   @Column({ type: DataType.BOOLEAN, allowNull: false })
-  isActive: boolean;
+  declare isActive: boolean;
 
   @Column({ type: DataType.DATE, allowNull: false })
-  createdAt: Date;
+  declare createdAt: Date;
 }

@@ -30,4 +30,16 @@ describe(`${categoryModelName} Unit Test`, () => {
     await sequelize.close();
   })
 
+  it('should create model with correct values', async () => {
+    const input = {
+      id: 'a0f841d2-1d61-4de6-9460-49c33f5ba27d', 
+      name: 'some name',
+      isActive: true,
+      createdAt: new Date()
+    }
+
+    const categoryOutput = await CategoryModel.create(input);
+
+    expect(categoryOutput.toJSON()).toStrictEqual(input);
+  });
 });

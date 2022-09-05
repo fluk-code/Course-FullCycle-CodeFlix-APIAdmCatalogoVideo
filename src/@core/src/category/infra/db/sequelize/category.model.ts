@@ -1,6 +1,5 @@
 import { CategoryProperties } from '#category/domain';
-import { Model } from 'sequelize';
-import { Column, DataType, PrimaryKey, Table } from 'sequelize-typescript';
+import { Column, DataType, Model, PrimaryKey, Table } from 'sequelize-typescript';
 
 /*
   ### Anotações: 
@@ -30,9 +29,9 @@ extends Model<CategoryModelProperties>
   @Column({ type: DataType.TEXT })
   description: string | null;
 
-  @Column({ allowNull: false })
+  @Column({ type: DataType.BOOLEAN, allowNull: false })
   isActive: boolean;
 
-  @Column({ allowNull: false })
+  @Column({ type: DataType.DATE, allowNull: false })
   createdAt: Date;
 }

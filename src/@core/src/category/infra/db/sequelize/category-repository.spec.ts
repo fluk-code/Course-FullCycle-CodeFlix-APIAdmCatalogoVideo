@@ -1,10 +1,12 @@
 import { Category } from '#category/domain';
+import { NotFoundError, UniqueEntityId } from '#seedwork/domain';
 import { Sequelize } from 'sequelize-typescript';
 import { CategorySequelizeRepository } from './category-repository';
 import { CategoryModel } from './category.model';
 
 const categorySequelizeRepositoryName = CategorySequelizeRepository.name;
 const categorySequelizeRepositoryMethodInsertName = CategorySequelizeRepository.prototype.insert.name;
+const categorySequelizeRepositoryMethodFindByIdName = CategorySequelizeRepository.prototype.findById.name;
 
 describe(`${categorySequelizeRepositoryName} Unit Test`, () => {
   let sequelize: Sequelize;
@@ -61,5 +63,17 @@ describe(`${categorySequelizeRepositoryName} Unit Test`, () => {
     expect(model.isActive).toBeFalsy();
     expect(model.createdAt.toISOString()).toBe(new Date(Date.now()).toISOString());
 
+  });
+
+  it(`should ${categorySequelizeRepositoryMethodFindByIdName} throws error when entity not found`, async () => {
+    let fakeId: string | UniqueEntityId = 'fake-invalid-id';
+    await expect(repository.findById(fakeId)).rejects.toThrow(
+      new NotFoundError(`Entity Not Found using ID ${fakeId}`)
+    )
+
+    fakeId = new UniqueEntityId('a0f841d2-1d61-4de6-9460-49c33f5ba27d');
+    await expect(repository.findById(fakeId)).rejects.toThrow(
+      new NotFoundError(`Entity Not Found using ID ${fakeId}`)
+    )
   });
 });

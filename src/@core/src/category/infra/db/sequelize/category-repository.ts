@@ -34,10 +34,6 @@ export class CategorySequelizeRepository implements CategoryRepository.Repositor
   async delete(id: string | UniqueEntityId): Promise<void> {
   }
 
-  //@ts-expect-error
-  protected async _get(id: string): Promise<Category>{
-  }
-
   async search(
     props: CategoryRepository.SearchParams
   ): Promise<CategoryRepository.SearchResult> {}

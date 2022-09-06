@@ -76,4 +76,15 @@ describe(`${categorySequelizeRepositoryName} Unit Test`, () => {
       new NotFoundError(`Entity Not Found using ID ${fakeId}`)
     )
   });
+  
+  it(`should ${categorySequelizeRepositoryMethodFindByIdName} when entity exists`, async () => {
+    const entityCategory = new Category({name: 'some name'});
+    await repository.insert(entityCategory);
+
+    let categoryFound = await repository.findById(entityCategory.id);
+    expect(entityCategory.toJson()).toStrictEqual(categoryFound.toJson());
+
+    categoryFound = await repository.findById(entityCategory.uniqueEntityId);
+    expect(entityCategory.toJson()).toStrictEqual(categoryFound.toJson());
+  });
 });

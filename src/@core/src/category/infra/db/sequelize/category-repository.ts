@@ -1,8 +1,10 @@
-import { UniqueEntityId } from '#seedwork/domain';
+import { NotFoundError, UniqueEntityId } from '#seedwork/domain';
 
 import { Category } from '#category/domain';
-import { CategoryRepository } from '#category/domain/repositories/category.repository';
+import CategoryRepository from '#category/domain/repositories/category.repository';
+
 import { CategoryModel } from './category.model';
+import { CategoryModelMapper } from './category-mapper';
 
 export class CategorySequelizeRepository implements CategoryRepository.Repository {
   sortableFields: string[] = ['name', 'createdAt'];
@@ -15,13 +17,16 @@ export class CategorySequelizeRepository implements CategoryRepository.Repositor
     await this.categoryModel.create(entity.toJson());
   }
 
+  async findById(id: string | UniqueEntityId): Promise<Category> {
+    const _id = id.toString();
+    const categoryModel = await this._get(_id);
+    return CategoryModelMapper.toEntity(categoryModel);
+  }
+
   //@ts-expect-error
   async findAll(): Promise<Category[]> {
   }
 
-  //@ts-expect-error
-  async findById(id: string | UniqueEntityId): Promise<Category> {
-  }
 
   async update(entity: Category): Promise<void> {
   }
@@ -36,4 +41,12 @@ export class CategorySequelizeRepository implements CategoryRepository.Repositor
   async search(
     props: CategoryRepository.SearchParams
   ): Promise<CategoryRepository.SearchResult> {}
+
+
+  private async _get(id: string): Promise<CategoryModel>{
+    return await this.categoryModel.findByPk(
+      id,
+      { rejectOnEmpty: new NotFoundError(`Entity Not Found using ID ${id}`)}
+    );
+  }
 }

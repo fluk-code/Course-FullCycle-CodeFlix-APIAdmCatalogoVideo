@@ -1,5 +1,6 @@
 import Entity from '#seedwork/domain/entity/entity';
 import { UniqueEntityId } from '#seedwork/domain/value-objects';
+import { CategoryValidator } from '../validators/category.validator';
 
 export type CategoryProperties = {
   name: string,
@@ -19,6 +20,8 @@ export class Category extends Entity<CategoryProperties> {
     this.props.description = this.props.description ?? null;
     this.props.isActive = this.props.isActive ?? true;
     this.props.createdAt = this.props.createdAt ?? new Date();
+
+    this.validate();
   }
   
   get name(): string {
@@ -60,5 +63,10 @@ export class Category extends Entity<CategoryProperties> {
 
   public deactivate() {
     this.props.isActive = false;
+  }
+
+  protected validate(): void {
+    const categoryValidator = new CategoryValidator();
+    categoryValidator.validate(this);
   }
 }

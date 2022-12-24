@@ -19,6 +19,8 @@ export abstract class Entity<Props = any> {
       ... this.props
     } as Required<{id: string} & Props>;
   }
+
+  protected abstract validate(): void;
 }
 
 export default Entity;

@@ -4,7 +4,11 @@ import Entity from './entity'
 import { validate as uuidValidate } from 'uuid';
 const entityName = Entity.name;
 
-class StubEntity extends Entity<{prop1: string, prop2: number}> {}
+class StubEntity extends Entity<{prop1: string, prop2: number}> {
+  protected validate(): void {
+    throw new Error('Method not implemented.');
+  }
+}
 
 describe(`${entityName} Unit Tests`, () => {
   it('should set props and id', () => {

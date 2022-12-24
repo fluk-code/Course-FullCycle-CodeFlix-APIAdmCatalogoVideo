@@ -17,7 +17,11 @@ type StubEntityProps = {
   price: number
 };
 
-class StubEntity extends Entity<StubEntityProps> {}
+class StubEntity extends Entity<StubEntityProps> {
+  protected validate(): void {
+    throw new Error('Method not implemented.');
+  }
+}
 
 class SubInMemoryRepository extends InMemoryRepository<StubEntity> {}
 

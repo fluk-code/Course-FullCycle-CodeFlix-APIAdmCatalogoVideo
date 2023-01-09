@@ -1,5 +1,5 @@
 import { DataType, Sequelize } from 'sequelize-typescript';
-import { CategoryModel } from './category-model';
+import { CategoryModel } from '../category-model';
 
 describe('Category Model Unit Test', () => {
   let sequelize: Sequelize;

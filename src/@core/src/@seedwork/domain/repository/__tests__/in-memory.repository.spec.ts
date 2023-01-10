@@ -41,8 +41,8 @@ describe(`${repositoryName} Unit Tests`, () => {
     it('should throws error when entity not found', async () => {
       const validUuid = 'cda16f22-e6ec-4ea3-a804-3aeee4b92581';
    
-      expect(repository.findById('invalid-id')).rejects.toThrow('Entity Not Found using ID invalid-id');
-      expect(repository.findById(new UniqueEntityId(validUuid))).rejects.toThrow(`Entity Not Found using ID ${validUuid}`); 
+      await expect(repository.findById('invalid-id')).rejects.toThrow('Entity Not Found using ID invalid-id');
+      await expect(repository.findById(new UniqueEntityId(validUuid))).rejects.toThrow(`Entity Not Found using ID ${validUuid}`); 
     });
 
     it('should find entity when valid id is provided', async () => {

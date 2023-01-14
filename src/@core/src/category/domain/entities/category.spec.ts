@@ -1,4 +1,6 @@
 import { UniqueEntityId } from '#seedwork/domain/value-objects';
+import { Validate } from 'class-validator';
+import { CategoryValidator } from '../validators/category.validator';
 import { Category, CategoryProperties } from './category';
 
 const categoryName = Category.name;
@@ -26,7 +28,7 @@ describe(`${categoryName} Unit Test`, () => {
 
         input.id && expect(category.id).toBe('cda16f22-e6ec-4ea3-a804-3aeee4b92581');
       });
-    })
+    });
 
     it('Should create category when only name properties is provided', () => {
       const category = new Category({
@@ -43,7 +45,7 @@ describe(`${categoryName} Unit Test`, () => {
       expect(category.props.description).toBeNull();
       expect(category.props.isActive).toBeTruthy();
       expect(category.props.createdAt).toBeInstanceOf(Date);
-    })
+    });
 
     it('Should create category when all properties is provided', () => {
       let categoryProperties: CategoryProperties = {
@@ -61,7 +63,17 @@ describe(`${categoryName} Unit Test`, () => {
       expect(category.props.description).toBe(categoryProperties.description);
       expect(category.props.isActive).toBeFalsy();
       expect(category.props.createdAt).toBeInstanceOf(Date);
-    })
+    });
+
+    it('should call validate method when category entity is instanced', () => {
+
+      const spyValidate = jest.spyOn(Category.prototype as any, 'validate');
+      new Category({
+        name: 'some name'
+      });
+  
+      expect(spyValidate).toHaveBeenCalledTimes(1);
+    });
   })
 
   describe('Getters and Setters', () => {
@@ -154,6 +166,15 @@ describe(`${categoryName} Unit Test`, () => {
       category.deactivate();
 
       expect(category.isActive).toBeFalsy();
+    });
+
+    it('should call validate in category validator when category entity is instanced', () => {
+      const spyValidate = jest.spyOn(CategoryValidator.prototype, 'validate');
+      new Category({
+        name: 'some name'
+      });
+  
+      expect(spyValidate).toHaveBeenCalledTimes(1);
     });
   });
 })
